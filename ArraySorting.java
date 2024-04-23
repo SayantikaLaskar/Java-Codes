@@ -1,34 +1,51 @@
-import java.util.Scanner;
-
 public class ArraySorting {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter the size of the array: ");
-        int size = scanner.nextInt();
-
-        int[] arr = new int[size];
-
-        System.out.println("Enter the elements of the array:");
-        for (int i = 0; i < size; i++) {
-            arr[i] = scanner.nextInt();
+    public static void printAscending(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
         }
-
-        System.out.println("Is the array sorted? " + isSorted(arr, size));
-        scanner.close();
+        System.out.println("Ascending Order:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
     }
 
-    // Recursive method to check if an array is sorted in ascending order.
-    public static boolean isSorted(int[] arr, int n) {
-        // Base case: If the array has 0 or 1 element, it is considered sorted.
-        if (n <= 1) {
-            return true;
+    public static void printDescending(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] < arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
         }
+        System.out.println("Descending Order:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
 
-        // Recursive case: Check if the last two elements are in ascending order,
-        // and recursively check the rest of the array.
-        return (arr[n - 2] <= arr[n - 1]) && isSorted(arr, n - 1);
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 9, 1, 7, 2, 8, 4, 6};
+
+        System.out.println("Original Array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+        printAscending(arr);
+        printDescending(arr);
     }
 }
-
